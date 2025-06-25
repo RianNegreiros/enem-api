@@ -27,7 +27,7 @@ export async function GET(
 
         const searchParams = request.nextUrl.searchParams;
 
-        let { limit, offset, language } = GetQuestionsQuerySchema.parse(
+        let { limit, offset, language, discipline } = GetQuestionsQuerySchema.parse(
             getSearchParamsAsObject(searchParams),
         );
 
@@ -58,15 +58,22 @@ export async function GET(
             language = exam.languages[0].value;
         }
 
-        const questionsToFetch = exam.questions
+        if (discipline && !exam.disciplines.find(d => d.value === discipline)) {
+            throw new EnemApiError({
+                code: 'bad_request',
+                message: `Discipline ${discipline} not found in exam`,
+            });
+        }
+
+        const filteredQuestions = exam.questions
             .filter(
                 question =>
-                    question.language === language || !question.language,
-            )
-            .filter(question => question.index >= Number(offset))
-            .filter(
-                question => question.index <= Number(offset) + Number(limit),
+                    (question.language === language || !question.language) &&
+                    (!discipline || question.discipline === discipline)
             );
+
+        const questionsToFetch = filteredQuestions
+            .slice(Number(offset), Number(offset) + Number(limit));
 
         const questions: Array<z.infer<typeof QuestionDetailSchema>> = [];
 

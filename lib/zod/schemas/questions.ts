@@ -149,6 +149,11 @@ export const GetQuestionsQuerySchema = z.object({
         .optional()
         .describe('O idioma desejado das questões')
         .openapi({ example: 'ingles' }),
+    discipline: z
+        .string()
+        .optional()
+        .describe('A disciplina desejada das questões')
+        .openapi({ example: 'ciencias-humanas' }),
 });
 
 export const GetQuestionDetailsQuerySchema = z.object({
