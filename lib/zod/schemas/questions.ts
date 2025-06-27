@@ -163,3 +163,13 @@ export const GetQuestionDetailsQuerySchema = z.object({
         .describe('O idioma desejado da questão')
         .openapi({ example: 'ingles' }),
 });
+
+export const BatchQuestionsRequestSchema = z.object({
+    indices: z
+        .array(z.number().int().positive())
+        .min(1)
+        .describe('Lista de índices das questões a serem buscadas')
+        .openapi({ example: [1, 2, 3] }),
+});
+
+export const BatchQuestionsResponseSchema = GetQuestionsResponseSchema;
