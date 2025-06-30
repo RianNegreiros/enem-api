@@ -3,11 +3,11 @@ import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { ExamDetailSchema } from '@/lib/zod/schemas/exams';
 
-export async function getExamDetails(year: string | number) {
+export async function getExamDetails(folder: string | number) {
     const filePath = path.join(
         process.cwd(),
         'public',
-        `${year}`,
+        `${folder}`,
         'details.json',
     );
 

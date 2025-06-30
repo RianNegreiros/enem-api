@@ -8,10 +8,15 @@ export async function getExamsV2() {
     const examsRaw = await readFile(filePath, 'utf-8');
     const exams = ExamSchema.array().parse(JSON.parse(examsRaw));
 
-    return exams.map(exam =>
-        ExamSchemaV2.parse({
+    return exams.map(exam => {
+        const folder = exam.title.includes('Segunda aplicação')
+            ? `${exam.year}-segunda-aplicacao`
+            : `${exam.year}`;
+
+        return ExamSchemaV2.parse({
             ...exam,
             id: slugify(exam.title),
-        }),
-    );
+            folder,
+        });
+    });
 }

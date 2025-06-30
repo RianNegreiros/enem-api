@@ -17,6 +17,7 @@
 ### Corrigido
 
 -   A API agora é capaz de lidar com múltiplos exames do mesmo ano sem conflitos.
+-   Corrigido um bug no endpoint `/v2/exams/{id}` que impedia a busca de detalhes de exames. A busca agora é feita pelo diretório correto no sistema de arquivos.
 
 ## [1.0.0]
 

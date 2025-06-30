@@ -74,6 +74,7 @@ export const ExamSchema = z
 
 export const ExamSchemaV2 = ExamSchema.extend({
     id: z.string(),
+    folder: z.string(),
 });
 
 export const ExamDetailSchema = ExamSchema.extend({

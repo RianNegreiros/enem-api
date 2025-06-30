@@ -9,11 +9,6 @@ export const dynamic = 'force-dynamic';
 
 const rateLimiter = new RateLimiter();
 
-const getExamsIds = async () => {
-    const exams = await getExamsV2();
-    return exams.map(exam => exam.id);
-};
-
 export async function GET(
     request: NextRequest,
     { params }: { params: { id: string } },
@@ -23,18 +18,21 @@ export async function GET(
 
         await logger(request);
 
-        const examIds = await getExamsIds();
+        const exams = await getExamsV2();
+        const exam = exams.find(e => e.id === params.id);
 
-        if (!examIds.includes(params.id)) {
+        if (!exam) {
             throw new EnemApiError({
                 code: 'not_found',
                 message: `No exam found for id ${params.id}`,
             });
         }
 
-        const exam = await getExamDetails(params.id);
+        const examDetails = await getExamDetails(exam.folder);
 
-        return NextResponse.json(exam, { headers: rateLimitHeaders });
+        return NextResponse.json(examDetails, {
+            headers: rateLimitHeaders,
+        });
     } catch (error) {
         return handleAndReturnErrorResponse(error);
     }
