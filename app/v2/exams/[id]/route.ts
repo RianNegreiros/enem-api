@@ -16,7 +16,7 @@ const getExamsIds = async () => {
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { year: string } },
+    { params }: { params: { id: string } },
 ) {
     try {
         const { rateLimitHeaders } = rateLimiter.check(request);
@@ -25,14 +25,14 @@ export async function GET(
 
         const examIds = await getExamsIds();
 
-        if (!examIds.includes(params.year)) {
+        if (!examIds.includes(params.id)) {
             throw new EnemApiError({
                 code: 'not_found',
-                message: `No exam found for id ${params.year}`,
+                message: `No exam found for id ${params.id}`,
             });
         }
 
-        const exam = await getExamDetails(params.year);
+        const exam = await getExamDetails(params.id);
 
         return NextResponse.json(exam, { headers: rateLimitHeaders });
     } catch (error) {
