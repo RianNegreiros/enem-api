@@ -1,0 +1,22 @@
+---
+title: 'Obter todos os exames'
+description: 'Retorna uma lista de todos os exames disponíveis na API.'
+---
+
+## Obter todos os exames
+
+Retorna uma lista de todos os exames disponíveis na API.
+
+<Card title="GET /v2/exams" icon="cloud-arrow-down" color="#3D9970">
+
+</Card>
+
+### Resposta
+
+A resposta será um array de objetos de exame, cada um com as seguintes propriedades:
+
+-   `id` (string): O identificador único do exame (ex: `enem-2022` ou `prova-2017-segunda-aplicacao`).
+-   `title` (string): O título do exame.
+-   `year` (number): O ano em que o exame foi aplicado.
+-   `disciplines` (array): Um array de objetos de disciplina disponíveis para o exame.
+-   `languages` (array): Um array de objetos de idioma disponíveis para o exame. 

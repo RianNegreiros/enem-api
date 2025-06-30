@@ -60,13 +60,32 @@
     ],
     "navigation": [
         {
-            "group": "Recursos",
+            "group": "Começando",
             "pages": [
                 "introduction",
-                "rate-limits",
-                "errors",
                 "self-hosting",
                 "contributing"
+            ]
+        },
+        {
+            "group": "API v2",
+            "pages": [
+                "api-v2/get-all-exams",
+                "api-v2/get-exam-by-id"
+            ]
+        },
+        {
+            "group": "API v1 Legada",
+            "pages": [
+                "api-v1/get-all-exams",
+                "api-v1/get-exam-by-year"
+            ]
+        },
+        {
+            "group": "Referência da API",
+            "pages": [
+                "errors",
+                "rate-limits"
             ]
         }
     ],
