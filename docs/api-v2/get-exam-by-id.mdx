@@ -1,0 +1,20 @@
+---
+title: 'Obter exame por ID'
+description: 'Retorna os detalhes de um exame específico pelo seu ID único.'
+---
+
+## Obter exame por ID
+
+Retorna os detalhes de um exame específico pelo seu ID único. A resposta inclui todas as questões do exame.
+
+<Card title="GET /v2/exams/{id}" icon="cloud-arrow-down" color="#3D9970">
+
+</Card>
+
+### Parâmetros de Caminho
+
+-   `id` (string, obrigatório): O identificador único do exame. Exemplo: `enem-2022`. Para provas com segunda aplicação, o ID segue o padrão `prova-ano-segunda-aplicao`. Exemplo: `prova-2017-segunda-aplicao`.
+
+### Resposta
+
+A resposta será um único objeto de exame com todas as suas questões. 

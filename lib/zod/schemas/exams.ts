@@ -72,6 +72,11 @@ export const ExamSchema = z
         title: 'Prova',
     });
 
+export const ExamSchemaV2 = ExamSchema.extend({
+    id: z.string(),
+    folder: z.string(),
+});
+
 export const ExamDetailSchema = ExamSchema.extend({
     questions: z.array(QuestionSchema).describe('As questões da prova'),
 }).openapi({
